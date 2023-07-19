@@ -16,5 +16,6 @@ public class GitTest {
         System.out.println("hello git4 ---> hot-fix");
         System.out.println(" master  ---> ---> hello git5 ");
         System.out.println(" pushTest  ---> ---> hello git6 ");
+        System.out.println(" pullTest  ---> ---> hello git6 ");
     }
 }
