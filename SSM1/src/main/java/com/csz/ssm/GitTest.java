@@ -18,5 +18,6 @@ public class GitTest {
         System.out.println(" pushTest  ---> ---> hello git6 ");
         System.out.println(" pushTest  ---> ---> hello git7 ");
         System.out.println(" pullTest  ---> ---> hello git8 ");
+        System.out.println(" pullTest  ---> ---> hello git9 ");
     }
 }
