@@ -7,4 +7,24 @@
     <insert id="insertUser">
         insert into t_user values(null,'陈苏娜','Min1999521',24,'女','chensuna@qq.com')
     </insert>
+    <update id="updateUserById" >
+            UPDATE t_user
+            SET username = 'Ms.Chen'
+            WHERE id = 2
+    </update>
+
+    <!--  int deleteUserById(Integer id);  -->
+    <delete id="deleteUserById">
+        delete from t_user where id = #{id}
+    </delete>
+
+    <select id="getUserById" resultType="com.csz.ssm.pojo.User">
+        select * from t_user where id = 1;
+    </select>
+
+    <!--  List<User> getAllUserList();  -->
+    <select id="getAllUserList" resultType="com.csz.ssm.pojo.User">
+        select * from t_user;
+    </select>
+
 </mapper>
