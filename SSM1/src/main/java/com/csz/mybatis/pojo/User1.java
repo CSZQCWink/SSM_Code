@@ -1,10 +1,10 @@
-package com.csz.ssm.pojo;
+package com.csz.mybatis.pojo;
 
 import lombok.*;
 
 /**
  * @BelongsPackage: com.csz.ssm.pojo
- * @ClassName: User
+ * @ClassName: User1
  * @Author: QC_Wink
  * @Description: 用户类
  * @CreateTime: 2023-07-20  23:37
@@ -16,11 +16,11 @@ import lombok.*;
 @Getter
 @Setter
 @ToString
-public class User {
+public class User1 {
     // 用户id
     private Integer id;
     // 用户名称
-    private String name;
+    private String username;
     // 用户密码
     private String password;
     // 用户年龄

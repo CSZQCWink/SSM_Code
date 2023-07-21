@@ -25,9 +25,9 @@
                 alias：设置某个类型的别名，若不设置该属性，那么该类型拥有默认的别名，即类名
                        且不区分大小写
         -->
-        <!-- <typeAlias type="com.csz.ssm.pojo.User" alias="User" /> -->
+        <!-- <typeAlias type="com.csz.mybatisParameter.pojo.User11" alias="User1" /> -->
         <!-- 以包为单位，将包下所有的类型设置默认的类型别名，即类名且不区分大小写 -->
-        <package name="com.csz.ssm.pojo"/>
+        <package name="com.csz.mybatisParameter.pojo"/>
     </typeAliases>
 
     <!--
@@ -77,6 +77,6 @@
                 (1) Mapper接口的包需要和映射文件所在的包一致
                 (2) Mapper接口的名字必须和映射文件的名字一致
         -->
-        <package name="com.csz.ssm.mapper"/>
+        <package name="com.csz.mybatis.mapper"/>
     </mappers>
 </configuration>

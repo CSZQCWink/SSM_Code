@@ -1,6 +1,6 @@
-package com.csz.ssm.mapper;
+package com.csz.mybatis.mapper;
 
-import com.csz.ssm.pojo.User;
+import com.csz.mybatis.pojo.User1;
 
 import java.util.List;
 
@@ -17,14 +17,14 @@ public interface UserMapper {
     int insertUser();
 
     // 修改用户的方法
-    int updateUserById(Integer id);
+    int updateUser();
 
     // 删除用户的方法
-    int deleteUserById(Integer id);
+    int deleteUser(Integer id);
 
     // 查询一个用户
-    User getUserById();
+    User1 getUser();
 
     // 查询所有用户的方法
-    List<User> getAllUserList();
+    List<User1> getAllUserList();
 }

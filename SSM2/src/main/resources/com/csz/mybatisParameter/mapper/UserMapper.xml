@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- mapper包里mapper接口的全类名-->
+<mapper namespace="com.csz.mybatisParameter.mapper.UserMapper">
+
+<!--  int addUser(User2 user)  -->
+    <insert id="addUser">
+        insert into t_user values(null,#{username},#{password},#{age},#{email},#{gender});
+    </insert>
+
+<!--  int deleteUserById(Integer)  -->
+    <delete id="deleteUserById">
+        delete from t_user where id = #{id}
+    </delete>
+
+<!--  User2 getUserByUserName(String userName)  -->
+    <select id="getUserByUserName" resultType="User2">
+        select * from t_user where username = #{username}
+    </select>
+<!--  User2 getUserByUserNameAndPassword(String userName, String password)  -->
+    <select id="getUserByUserNameAndPassword" resultType="com.csz.mybatisParameter.pojo.User2">
+        select * from t_user where username = #{param1} and password = #{param2}
+    </select>
+
+    <!--  int updateUserById(User2 user)  -->
+    <update id="updateUser">
+        UPDATE t_user
+        SET username = #{username}, age = #{age},password = #{password}, email = #{email} , gender = #{gender}
+        WHERE username = #{username}
+    </update>
+
+</mapper>
