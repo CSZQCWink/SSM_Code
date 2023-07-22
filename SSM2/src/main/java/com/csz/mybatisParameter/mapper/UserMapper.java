@@ -1,7 +1,8 @@
 package com.csz.mybatisParameter.mapper;
-
-
 import com.csz.mybatisParameter.pojo.User2;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.Map;
 
 /**
  * @BelongsPackage: com.csz.ssm.mapper
@@ -21,8 +22,14 @@ public interface UserMapper {
     // 根据名字和密码查找指定的用户
     User2 getUserByUserNameAndPassword(String userName, String password);
 
+    // 自定义map集合查找指定的用户
+    User2 getUserByMap(Map<String, Object> map);
+
+    // 使用@Param注解查找指定的用户
+    User2 getUserByParam(@Param("username") String username, @Param("password") String password);
+
     // 修改数据库中的数据
-    int updateUser(User2 user);
+    int  updateUser(User2 user);
 
     // 根据id删除指定的对象
     int deleteUserById(Integer id);

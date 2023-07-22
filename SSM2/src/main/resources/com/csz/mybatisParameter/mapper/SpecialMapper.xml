@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- mapper包里mapper接口的全类名-->
+<mapper namespace="com.csz.mybatisParameter.mapper.SpecialMapper">
+
+<!--int deleteMore(@Param("ids") String ids);-->
+    <delete id="deleteMore">
+        delete from t_user where id in (${ids})
+    </delete>
+<!--  List<User2> getAllUserList(@Param("tableName") String tableName)  -->
+    <select id="getAllUserList" resultType="com.csz.mybatisParameter.pojo.User2">
+        select * from ${tableName};
+    </select>
+
+<!-- void addUser(User2 user)-->
+    <insert id="adUser" useGeneratedKeys="true" keyProperty="id">
+        insert into t_user values(null,#{username},#{password},#{age},#{email},#{gender});
+    </insert>
+
+</mapper>

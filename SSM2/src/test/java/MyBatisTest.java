@@ -4,6 +4,9 @@ import com.csz.mybatisParameter.utils.SqlSessionUtils;
 import org.apache.ibatis.session.SqlSession;
 import org.junit.Test;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * @BelongsPackage: PACKAGE_NAME
  * @ClassName: MyBatisTest
@@ -69,15 +72,59 @@ public class MyBatisTest {
         System.out.println(user);
     }
 
+    /**
+     * @title: getUserByMap
+     * @author: QC_Wink
+     * @description: 自定义map集合查找指定的用户
+     * @param: []
+     * @return: void
+     * @throws:
+     * @date: 2023/7/22 11:56
+     **/
+    @Test
+    public void getUserByMap() {
+        SqlSession sqlSession = SqlSessionUtils.sqlSessionCreate();
+        UserMapper mapper = sqlSession.getMapper(UserMapper.class);
+        Map<String,Object> map = new HashMap<>();
+        map.put("username","李四");
+        map.put("password","lisi");
+        User2 user = mapper.getUserByMap(map);
+        System.out.println(user);
+    }
+
+    /**
+     * @title: getUserByParam
+     * @author: QC_Wink
+     * @description: 使用@Param注解查找指定的用户
+     * @param: []
+     * @return: void
+     * @throws:
+     * @date: 2023/7/22 11:57
+     **/
+    @Test
+    public void getUserByParam() {
+        SqlSession sqlSession = SqlSessionUtils.sqlSessionCreate();
+        UserMapper mapper = sqlSession.getMapper(UserMapper.class);
+        User2 user = mapper.getUserByParam("李四","lisi");
+        System.out.println(user);
+    }
+
+    /**
+     * @title: updateUserById
+     * @author: QC_Wink
+     * @description: 修改用户信息
+     * @param: []
+     * @return: void
+     * @throws:
+     * @date: 2023/7/22 12:44
+     **/
     @Test
     public void updateUserById() {
         SqlSession sqlSession = SqlSessionUtils.sqlSessionCreate();
         UserMapper mapper = sqlSession.getMapper(UserMapper.class);
-        User2 user = mapper.getUserByUserName("李四");
-        System.out.println(user);
-        user.setGender("男");
-        user.setEmail("lisi@163.com");
-
+        User2 user = new User2();
+        user.setId(2);
+        user.setUsername("new - name");
         int result = mapper.updateUser(user);
         if (result == 1){
             System.out.println("修改成功");

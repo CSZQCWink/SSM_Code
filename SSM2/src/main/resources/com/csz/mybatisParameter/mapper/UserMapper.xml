@@ -10,25 +10,33 @@
         insert into t_user values(null,#{username},#{password},#{age},#{email},#{gender});
     </insert>
 
-<!--  int deleteUserById(Integer)  -->
-    <delete id="deleteUserById">
-        delete from t_user where id = #{id}
-    </delete>
-
 <!--  User2 getUserByUserName(String userName)  -->
     <select id="getUserByUserName" resultType="User2">
         select * from t_user where username = #{username}
     </select>
+
 <!--  User2 getUserByUserNameAndPassword(String userName, String password)  -->
     <select id="getUserByUserNameAndPassword" resultType="com.csz.mybatisParameter.pojo.User2">
         select * from t_user where username = #{param1} and password = #{param2}
     </select>
 
-    <!--  int updateUserById(User2 user)  -->
-    <update id="updateUser">
-        UPDATE t_user
-        SET username = #{username}, age = #{age},password = #{password}, email = #{email} , gender = #{gender}
-        WHERE username = #{username}
+<!--  User2  getUserByMap(Map<String,Object> map) -->
+    <select id="getUserByMap" resultType="com.csz.mybatisParameter.pojo.User2">
+        select * from t_user where username = #{username} and password = #{password}
+    </select>
+
+<!--  User2  getUserByParam(@Param("username") String username,@Param("password") String password) -->
+    <select id="getUserByParam" resultType="com.csz.mybatisParameter.pojo.User2">
+        select * from t_user where username = #{username} and password = #{password}
+    </select>
+
+<!--  int updateUserById(Integer id , User2 user)  -->
+    <update id="updateUser" >
+        update t_user set username=#{username} where id=#{id}
     </update>
 
+<!--  int deleteUserById(Integer)  -->
+    <delete id="deleteUserById">
+        delete from t_user where id = #{id}
+    </delete>
 </mapper>

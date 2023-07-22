@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- mapper包里mapper接口的全类名 -->
+<mapper namespace="com.csz.mybatisParameter.mapper.SelectMapper">
+
+<!--User2 getUserById(Integer id) -->
+    <select id="getUserById" resultType="com.csz.mybatisParameter.pojo.User2">
+        select * from t_user where id=#{id}
+    </select>
+<!--  List<User> getAllUserList  -->
+    <select id="getAllUserList" resultType="com.csz.mybatisParameter.pojo.User2">
+        select  * from t_user;
+    </select>
+<!--  Integer getAllUserCount()  -->
+    <select id="getAllUserCount" resultType="java.lang.Integer">
+        select count(1) from t_user;
+    </select>
+<!--  Map<String,User2> getUserByIdToMap(@Param("id") Integer id)  -->
+    <select id="getUserByIdToMap" resultType="java.util.Map">
+        select * from t_user where id = #{id}
+    </select>
+<!--  List<Map<String,User2>> getAllUserToMap();  -->
+    <select id="getAllUserToMap" resultType="java.util.Map">
+        select * from t_user
+    </select>
+<!--   Map<String,Object> getAllUserToMap2()  -->
+    <select id="getAllUserToMap2" resultType="java.util.Map">
+        select * from t_user
+    </select>
+<!--  List<User2> getUserLikeName(@Param("name") String name);  -->
+    <select id="getUserLikeName" resultType="com.csz.mybatisParameter.pojo.User2">
+        select * from t_user where username like "%"#{username}"%"
+        <!-- select * from t_user where username like '%${username}%' -->
+        <!-- select * from t_user where username like concat("%",#{username},"%")-->
+    </select>
+</mapper>
