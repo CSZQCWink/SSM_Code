@@ -31,9 +31,49 @@
         <result property="empName" column="emp_name"></result>
         <result property="age" column="age"></result>
         <result property="gender" column="gender"></result>
-        <result property="deptId" column="dept_id"></result>
+
     </resultMap>
+<!--  List<Emp> getAllEmpList()  -->
     <select id="getAllEmpList" resultMap="empMap">
         select * from t_emp;
+    </select>
+<!--  Emp getEmpById()  -->
+    <select id="getEmpById" resultMap="empMap">
+        select * from t_emp where emp_id = #{id};
+    </select>
+
+<!--
+    一对多自定义映射shezxhi
+        方式一：依旧是使用<result>标签
+
+        方式二：使用<association>标签
+            属性
+                1. property: 设置映射关系中实体类中的属性名
+                2. javaType: 设置映射关系中实体类的属性的的实体类
+                子标签 ：
+                    1. id: 设置主键的映射关系
+                    2. result: 设置普通字段的映射关系
+                        子标签属性：
+                            1. property: 设置映射关系中实体类中的属性名
+                            2. column: 设置映射关系中表中的字段名
+ -->
+    <resultMap id="empAndDeptMap" type="com.csz.mybatisResultMap.pojo.Emp">
+        <id property="empId" column="emp_id"></id>
+        <result property="empName" column="emp_name"></result>
+        <result property="age" column="age"></result>
+        <result property="gender" column="gender"></result>
+<!--        <result property="dept.deptId" column="dept_id"></result>-->
+<!--        <result property="dept.deptName" column="dept_name"></result>-->
+        <association property="dept" javaType="com.csz.mybatisResultMap.pojo.Dept">
+            <id property="deptId" column="dept_id"></id>
+            <result property="deptName" column="dept_name"></result>
+        </association>
+    </resultMap>
+<!--  Emp getEmpAndDeptById()  -->
+    <select id="getEmpAndDeptById" resultMap="empAndDeptMap">
+        select *
+        from t_emp te, t_dept td
+        where te.dept_id = td.dept_id
+        and emp_id = #{empId};
     </select>
 </mapper>

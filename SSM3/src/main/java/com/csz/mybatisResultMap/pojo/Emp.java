@@ -22,5 +22,6 @@ public class Emp {
     private String empName;
     private Integer age;
     private String gender;
-    private Integer deptId;
+    // 一对一就是实体类对象 一对多就是一个集合
+    private Dept dept;
 }
