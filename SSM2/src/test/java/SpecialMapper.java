@@ -68,9 +68,4 @@ public class SpecialMapper {
         SqlSessionUtils.sqlSessionCreate().getMapper(com.csz.mybatisParameter.mapper.SpecialMapper.class).adUser(user);
         System.out.println(user);
     }
-
-
-
-
-
 }

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--mapper接口名对应-->
+<mapper namespace="com.csz.mybatisResultMap.mapper.EmpMapper">
+
+<!--  List<Emp> getAllEmpList()  -->
+    <!-- 没有使用resultMap
+    <select id="getAllEmpList" resultType="com.csz.mybatisResultMap.pojo.Emp">
+        select * from t_emp;
+    </select>
+    -->
+
+<!--
+    若字段名和实体类中的属性名不一致，则可以通过resultMap设置自定义映射
+    属性：
+        1. id 表示自定义映射的唯一标识
+        2. type 查询的数据要映射的实体类的类型
+        子标签：
+            1. id 设置主键的映射关系
+            2. result 设置普通字段的映射关系
+            3. association：设置多对一的映射关系
+            4. collection：设置一对多的映射关系
+                子标签属性
+                    1. property：设置映射关系中实体类中的属性名
+                    2. column：设置映射关系中表中的字段名
+ -->
+    <resultMap id="empMap" type="com.csz.mybatisResultMap.pojo.Emp">
+        <id property="empId" column="emp_id"></id>
+        <result property="empName" column="emp_name"></result>
+        <result property="age" column="age"></result>
+        <result property="gender" column="gender"></result>
+        <result property="deptId" column="dept_id"></result>
+    </resultMap>
+    <select id="getAllEmpList" resultMap="empMap">
+        select * from t_emp;
+    </select>
+</mapper>
