@@ -21,4 +21,8 @@ public class EmpMapperTest {
         List<Emp> allEmpList = mapper.getAllEmpList();
         allEmpList.forEach(System.out:: println);
     }
+    @Test
+    public void testGitHub(){
+        System.out.println("GitHub push");
+    }
 }
