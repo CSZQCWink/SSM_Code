@@ -21,4 +21,11 @@ public class DeptMapperTest {
         List<Dept> allDeptList = mapper.getAllDeptList();
         allDeptList.forEach(System.out::println);
     }
+
+    @Test
+    public void SubStepTwoGetEmpAndDeptById(){
+        DeptMapper mapper = SqlSessionUtils.sqlSessionCreate().getMapper(DeptMapper.class);
+        Dept dept = mapper.SubStepTwoGetEmpAndDeptById(1);
+        System.out.println(dept);
+    }
 }

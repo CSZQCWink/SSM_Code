@@ -23,4 +23,7 @@ public interface EmpMapper {
 
 	// 根据id 查询中指定的员工信息和对应的部门信息
 	Emp getEmpAndDeptById(@Param("empId") int empId);
+
+	// 根据id 分步查询指定的员工信息和对应的部门信息
+	Emp SubStepOneGetEmpAndDeptById(@Param("empId") int empId);
 }

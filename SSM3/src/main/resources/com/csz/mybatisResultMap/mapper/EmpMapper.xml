@@ -57,7 +57,7 @@
                             1. property: 设置映射关系中实体类中的属性名
                             2. column: 设置映射关系中表中的字段名
  -->
-    <resultMap id="empAndDeptMap" type="com.csz.mybatisResultMap.pojo.Emp">
+    <resultMap id="empAndDeptResultMap" type="com.csz.mybatisResultMap.pojo.Emp">
         <id property="empId" column="emp_id"></id>
         <result property="empName" column="emp_name"></result>
         <result property="age" column="age"></result>
@@ -70,10 +70,30 @@
         </association>
     </resultMap>
 <!--  Emp getEmpAndDeptById()  -->
-    <select id="getEmpAndDeptById" resultMap="empAndDeptMap">
+    <select id="getEmpAndDeptById" resultMap="empAndDeptResultMap">
         select *
         from t_emp te, t_dept td
         where te.dept_id = td.dept_id
         and emp_id = #{empId};
+    </select>
+
+
+    <resultMap id="SubStepEmpAndDeptResultMap" type="com.csz.mybatisResultMap.pojo.Emp">
+        <id property="empId" column="emp_id"></id>
+        <result property="empName" column="emp_name"></result>
+        <result property="age" column="age"></result>
+        <result property="gender" column="gender"></result>
+        <!--
+            select：设置分步查询，查询某个属性的值的sql的标识（namespace.sqlId）
+            column：将sql以及查询结果中的某个字段设置为分步查询的条件
+        -->
+        <association property="dept"
+                     select="com.csz.mybatisResultMap.mapper.DeptMapper.SubStepTwoGetEmpAndDeptById"
+                     column="dept_id">
+        </association>
+    </resultMap>
+<!--  Emp SubStepOneGetEmpAndDeptById(@Param("empId") int empId)  -->
+    <select id="SubStepOneGetEmpAndDeptById" resultMap="SubStepEmpAndDeptResultMap">
+        select * from t_emp where emp_id = #{empId};
     </select>
 </mapper>

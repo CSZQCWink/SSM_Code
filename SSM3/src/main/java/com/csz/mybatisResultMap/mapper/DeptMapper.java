@@ -1,6 +1,7 @@
 package com.csz.mybatisResultMap.mapper;
 
 import com.csz.mybatisResultMap.pojo.Dept;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -14,5 +15,9 @@ import java.util.List;
  */
 
 public interface DeptMapper {
+	// 查询所有的部门信息
 	List<Dept> getAllDeptList();
+
+	// 分步查询员工的部门信息
+	Dept SubStepTwoGetEmpAndDeptById(@Param("deptId") Integer deptId);
 }

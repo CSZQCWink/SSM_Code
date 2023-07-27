@@ -61,4 +61,11 @@ public class EmpMapperTest {
         Emp emp = mapper.getEmpAndDeptById(1);
         System.out.println(emp);
     }
+
+    @Test
+    public void SubStepGetEmpById(){
+        EmpMapper mapper = SqlSessionUtils.sqlSessionCreate().getMapper(EmpMapper.class);
+        Emp emp = mapper.SubStepOneGetEmpAndDeptById(1);
+        System.out.println(emp);
+    }
 }

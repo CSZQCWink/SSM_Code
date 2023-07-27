@@ -9,4 +9,9 @@
     <select id="getAllDeptList" resultType="com.csz.mybatisResultMap.pojo.Dept">
         select * from t_dept;
     </select>
+
+<!-- Dept SubStepTwoGetEmpAndDeptById(@Param("deptId") Integer deptId) -->
+    <select id="SubStepTwoGetEmpAndDeptById" resultType="com.csz.mybatisResultMap.pojo.Dept">
+        select * from t_dept where dept_id = #{deptId}
+    </select>
 </mapper>
