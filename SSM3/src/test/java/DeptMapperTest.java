@@ -15,6 +15,15 @@ import java.util.List;
  */
 
 public class DeptMapperTest {
+    /**
+     * @title: getAllDeptListTest
+     * @author: QC_Wink
+     * @description: 获取所有的部门信息
+     * @param: []
+     * @return: void
+     * @throws:
+     * @date: 2023/7/28 15:43
+     **/
     @Test
     public void getAllDeptListTest(){
         DeptMapper mapper = SqlSessionUtils.sqlSessionCreate().getMapper(DeptMapper.class);
@@ -22,10 +31,38 @@ public class DeptMapperTest {
         allDeptList.forEach(System.out::println);
     }
 
+
+    /**
+     * @title: getDeptAndEmpByDeptId
+     * @author: QC_Wink
+     * @description: 根据部门id获取部门信息和员工信息
+     * @param: []
+     * @return: void
+     * @throws:
+     * @date: 2023/7/28 15:44
+     **/
     @Test
-    public void SubStepTwoGetEmpAndDeptById(){
+    public void getDeptAndEmpByDeptId(){
         DeptMapper mapper = SqlSessionUtils.sqlSessionCreate().getMapper(DeptMapper.class);
-        Dept dept = mapper.SubStepTwoGetEmpAndDeptById(1);
+        Dept dept = mapper.getDeptAndEmpByDeptId(1);
+        System.out.println(dept);
+    }
+
+    /**
+     * @title: StepGetDeptAndEmpByDeptId
+     * @author: QC_Wink
+     * @description: 分步查询部门信息和员工信息
+     * @param: []
+     * @return: void
+     * @throws:
+     * @date: 2023/7/28 15:47
+     **/
+    @Test
+    public void StepGetDeptAndEmpByDeptId(){
+        DeptMapper mapper = SqlSessionUtils.sqlSessionCreate().getMapper(DeptMapper.class);
+        Dept dept = mapper.StepOneGetDeptInfoByDeptId(2);
         System.out.println(dept);
     }
 }
+
+

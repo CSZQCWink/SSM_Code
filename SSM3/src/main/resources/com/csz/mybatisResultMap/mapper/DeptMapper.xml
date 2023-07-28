@@ -14,4 +14,38 @@
     <select id="SubStepTwoGetEmpAndDeptById" resultType="com.csz.mybatisResultMap.pojo.Dept">
         select * from t_dept where dept_id = #{deptId}
     </select>
+
+<!--———————————————————————————————————————————————————————————————————————————————————————————————————————-->
+    <resultMap id="getDeptAndEmp" type="com.csz.mybatisResultMap.pojo.Dept">
+        <id property="deptId" column="dept_id" />
+        <result property="deptName" column="dept_name" />
+        <collection property="empList" ofType="com.csz.mybatisResultMap.pojo.Emp">
+            <id property="empId" column="emp_id" />
+            <result property="empName" column="emp_name" />
+            <result property="age" column="age" />
+            <result property="gender" column="gender"/>
+        </collection>
+    </resultMap>
+<!--  Dept getDeptAndEmpByDeptId(@Param("deptId") Integer deptId)  -->
+    <select id="getDeptAndEmpByDeptId" resultMap="getDeptAndEmp">
+        select *
+        from t_dept td, t_emp te
+        where  te.dept_id = td.dept_id
+        and td.dept_id = #{deptId}
+    </select>
+
+<!--——————————————————————————————————————————————————————————————————————————————————————————————————————-->
+    <resultMap id="StepOneGetDeptAndEmpResultMap" type="com.csz.mybatisResultMap.pojo.Dept">
+        <id property="deptId" column="dept_id" />
+        <result property="deptName" column="dept_name" />
+        <collection property="empList"
+                    select="com.csz.mybatisResultMap.mapper.EmpMapper.StepTwoGetEmpAndDeptById"
+                    column="dept_id"
+        >
+        </collection>
+    </resultMap>
+<!--  Dept StepOneGetDeptInfoByDeptId(@Param("deptId") Integer deptId)  -->
+    <select id="StepOneGetDeptInfoByDeptId" resultMap="StepOneGetDeptAndEmpResultMap">
+        select * from t_dept td where td.dept_id = #{deptId}
+    </select>
 </mapper>

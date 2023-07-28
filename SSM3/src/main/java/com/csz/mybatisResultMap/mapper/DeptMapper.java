@@ -18,6 +18,12 @@ public interface DeptMapper {
 	// 查询所有的部门信息
 	List<Dept> getAllDeptList();
 
-	// 分步查询员工的部门信息
+	// 分步查询员工的部门信息 ： 第二步
 	Dept SubStepTwoGetEmpAndDeptById(@Param("deptId") Integer deptId);
+
+	// 根据部门id获取部门信息以及员工信息
+	Dept getDeptAndEmpByDeptId(@Param("deptId") Integer deptId);
+
+	// 分步查询部门信息以及员工的信息 ： 第一步
+	Dept StepOneGetDeptInfoByDeptId(@Param("deptId") Integer deptId);
 }

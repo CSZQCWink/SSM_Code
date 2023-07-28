@@ -24,6 +24,9 @@ public interface EmpMapper {
 	// 根据id 查询中指定的员工信息和对应的部门信息
 	Emp getEmpAndDeptById(@Param("empId") int empId);
 
-	// 根据id 分步查询指定的员工信息和对应的部门信息
+	// 根据id 分步查询指定的员工信息和对应的部门信息 ： 第一步
 	Emp SubStepOneGetEmpAndDeptById(@Param("empId") int empId);
+
+	// 分步查询部门信息以及员工的信息 ： 第二步
+	Emp StepTwoGetEmpAndDeptById(@Param("deptId") int deptId);
 }
