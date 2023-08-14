@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<!--
+    配置HelloWorld所对应的bean，即将HelloWorld的对象交给Spring的IOC容器管理
+    通过bean标签配置IOC容器所管理的bean
+    属性：
+        id：设置bean的唯一标识
+        class：设置bean所对应类型的全类名
+ -->
+    <bean id="helloWorld" class="com.csz.spring.bean.HelloWorld"/>
+
+<!--
+    配置Bean时为属性赋值Setter注入
+        property标签：通过组件类的setXxx()方法给组件对象设置属性
+            name属性：指定属性名（这个属性名是getXxx()、setXxx()方法定义的，和成员变量无关）
+            value属性：指定属性值
+ -->
+    <bean id="studentOne" class="com.csz.spring.bean.Student">
+        <property name="id" value="1"/>
+        <property name="name" value="陈苏洲"/>
+        <property name="age" value="22"/>
+        <property name="sex" value="男"/>
+    </bean>
+
+<!--
+    配置Bean时为属性赋值构造器注入
+        constructor-arg标签还有两个属性可以进一步描述构造器参数：
+            value属性：根据构造器的顺序指定属性值
+            index属性：指定参数所在位置的索引（从0开始）
+            name属性：指定参数名
+ -->
+<!--    <bean id="studentTwo" class="com.csz.spring.bean.Student">-->
+<!--        <constructor-arg value="2"/>-->
+<!--        <constructor-arg value="陈苏闵"/>-->
+<!--        <constructor-arg value="28"/>-->
+<!--        <constructor-arg value="女"/>-->
+<!--    </bean>-->
+
+<!--
+    为自定义类类型属性赋值
+        方式一：外部引用Bean
+ -->
+    <bean id="clazzOne" class="com.csz.spring.bean.Clazz">
+        <property name="id" value="1111"/>
+        <property name="name" value="财源滚滚班"/>
+    </bean>
+
+    <bean id="studentThree" class="com.csz.spring.bean.Student">
+        <property name="id" value="1"/>
+        <property name="name" value="陈苏洲"/>
+        <property name="age" value="22"/>
+        <property name="sex" value="男"/>
+        <!-- ref属性：引用IOC容器中某个bean的id，将所对应的bean为属性赋值 -->
+        <property name="clazz" ref="clazzOne"/>
+    </bean>
+<!--
+     为自定义类类型属性赋值
+        方式二：内部Bean
+ -->
+    <bean id="studentFour" class="com.csz.spring.bean.Student">
+        <property name="id" value="1004"/>
+        <property name="name" value="赵六"/>
+        <property name="age" value="26"/>
+        <property name="sex" value="女"/>
+        <property name="clazz">
+            <!-- 在一个bean中再声明一个bean就是内部bean -->
+            <!-- 内部bean只能用于给属性赋值，不能在外部通过IOC容器获取，因此可以省略id属性 -->
+            <bean  class="com.csz.spring.bean.Clazz">
+                <property name="id" value="2222"/>
+                <property name="name" value="远大前程班"/>
+            </bean>
+        </property>
+    </bean>
+
+<!--
+     为自定义类类型属性赋值
+        方式三：级联属性赋值
+ -->
+    <bean id="studentFive" class="com.csz.spring.bean.Student">
+        <property name="id" value="1004"/>
+        <property name="name" value="赵六"/>
+        <property name="age" value="26"/>
+        <property name="sex" value="女"/>
+        <!-- 一定先引用某个bean为属性赋值，才可以使用级联方式更新属性 -->
+        <property name="clazz" ref="clazzOne"/>
+        <property name="clazz.id" value="3333"/>
+        <property name="clazz.name" value="最强王者班"/>
+    </bean>
+</beans>
