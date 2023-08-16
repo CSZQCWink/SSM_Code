@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+<!--  情况一:全部扫描  -->
+    <context:component-scan base-package="com.csz.spring"/>
+
+<!--  情况二：指定要排除的组件-->
+    <context:component-scan base-package="com.csz">
+        <!--
+            context:exclude-filter标签：指定排除规则
+                type：设置排除或包含的依据
+                    type="annotation"，根据注解排除，expression中设置要排除的注解的全类名
+                    type="assignable"，根据类型排除，expression中设置要排除的类型的全类名
+         -->
+        <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+        <!--<context:exclude-filter type="assignable" expression="com.csz.controller.UserController"/>-->
+    </context:component-scan>
+
+
+    <context:component-scan base-package="com.csz" use-default-filters="false">
+        <!--
+            context:include-filter标签：包含扫描
+                use-default-filters属性：此时必须设置use-default-filters="false"，因为默认规则即扫描指定包下所有类
+                    use-default-filters="false" 所设置的包下所有的类都不需要扫描 此时可以使用包含扫描
+                    use-default-filters="true" 所设置的包下的类都需要扫描，此时可以使用排除扫描
+                type：设置排除或包含的依据
+                    type="annotation"，根据注解排除，expression中设置要排除的注解的全类名
+                    type="assignable"，根据类型排除，expression中设置要排除的类型的全类名
+        -->
+        <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+        <!--<context:include-filter type="assignable" expression="com.csz.controller.UserController"/>-->
+    </context:component-scan>
+</beans>
