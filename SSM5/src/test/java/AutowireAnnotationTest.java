@@ -26,6 +26,4 @@ public class AutowireAnnotationTest {
         System.out.println(empService);
         System.out.println(empDao);
     }
-
-
 }
